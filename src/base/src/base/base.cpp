@@ -1,5 +1,7 @@
 #include "aoe/base/base.h"
 #include "aoe/this_process/this_process.h"
+#include "aoe/self_start/self_start.h"
+#include "aoe/base/sys_base.h"
 
 #include <set>
 #include <csignal>
@@ -104,6 +106,19 @@ void initialize() {
 
     if (base::s_init_config_.node_name = env("AOE_NODE_NAME"); base::s_init_config_.node_name.empty()) {
         base::s_init_config_.node_name = aoe::this_process::path().filename();
+    }
+    // TODO: store all env variable
+    // we need to store all env variable which start with aoe!
+
+    base::s_is_eon_stopped = false;
+
+    // TODO: use some ways to deal with self_start module?
+    // forch link is not a good way, we need a more pretty ways to do this!
+    self_start::setup();
+
+    if (aoe::base::s_is_eon_stopped) {
+        finalize();
+        std::exit(0);
     }
 }
 
