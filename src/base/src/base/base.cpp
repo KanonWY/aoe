@@ -125,7 +125,7 @@ void initialize() {
 void finalize() {
     // 关闭 eon 框架，也将退出所有相关阻塞等待的流程
     ::aoe::terminate();
-
+    std::cout << "aoe finalize..." << std::endl;
     // 关闭全部 eon 系统模块
 }
 

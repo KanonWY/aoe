@@ -73,7 +73,7 @@ void comsumer() {
 }
 
 
-int main() {
+int TEST_pr_com() {
     std::thread t1(produce);
     std::thread t2(comsumer);
     std::thread t3(comsumer);
@@ -89,5 +89,25 @@ int main() {
     t3.join();
     t4.join();
     t5.join();
+    return 0;
+}
+
+#include "aoe/macro.h"
+#include <type_traits>
+
+// define a conecpt
+template<typename T>
+using MyConcept1 = AOE_CONCEPT((std::is_same_v<T,int>));
+
+// make T concept
+template <class T, AOE_REQUIRES(aoe::is<MyConcept1, T>)>
+void myFunc(T value)
+{
+    std::cout << "call myFunc: " << value << std::endl;
+}
+
+int main() {
+
+    myFunc(20);
     return 0;
 }

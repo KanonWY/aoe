@@ -2,6 +2,7 @@
 
 #include "aoe/this_process/this_process.h"
 #include "aoe/design_pattern/singleton.h"
+#include "aoe/self_start/manager.h"
 
 
 namespace aoe::self_start{

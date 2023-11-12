@@ -1,10 +1,11 @@
 #pragma once
 
-#include <filesystem>
-
 #include "aoe/base/init_config.h"
 
+#include <filesystem>
+
 namespace aoe {
+
 void initialize();
 
 void finalize();

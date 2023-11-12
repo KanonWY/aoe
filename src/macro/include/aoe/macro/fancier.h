@@ -5,7 +5,7 @@
 #include "aoe/macro/arguments.h"
 
 
-namespace AOE::details::type_traits {
+namespace aoe::details::type_traits {
 /**
  * @brief 用于检查给定的模板实例化是否合法
  * @tparam TOp 被检查的模板
@@ -46,7 +46,7 @@ struct checker<false> {
     }
 
 
-namespace AOE {
+namespace aoe {
 /**
  * @brief 用于检查指定模板的实例化是否合法，也即是否符合某种 concept
  * @tparam TOp 被检查的模板
@@ -232,7 +232,7 @@ constexpr auto same_as(CheckedType) -> AOE_EVAL(details::type_traits::checker<st
 #define AOE_DETAILS_TESTS(...) decltype(__VA_ARGS__)
 
 // 检查指定表达式是否成立
-#define AOE_DETAILS_CONCEPT_CHECKS(...) ::AOE::details::type_traits::checker<__VA_ARGS__>::value
+#define AOE_DETAILS_CONCEPT_CHECKS(...) ::aoe::details::type_traits::checker<__VA_ARGS__>::value
 
 // 用于 AOE_CONCEPT 中条件检查的宏，需要分成使用两层宏实现，确保宏参数正确展开
 #define AOE_DETAILS_CONCEPT_1(...) AOE_DETAILS_CONCEPT_1_DO(__VA_ARGS__)
