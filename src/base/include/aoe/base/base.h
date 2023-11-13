@@ -3,6 +3,8 @@
 #include "aoe/base/init_config.h"
 
 #include <filesystem>
+#include <functional>
+
 
 namespace aoe {
 

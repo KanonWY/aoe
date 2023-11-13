@@ -6,6 +6,9 @@
 #include <set>
 #include <csignal>
 #include <iostream>
+#include <functional>
+#include <atomic>
+#include <condition_variable>
 
 namespace aoe::base {
 
