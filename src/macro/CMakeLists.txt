@@ -12,6 +12,6 @@ add_executable(TEST_aoe_macro)
 target_sources(TEST_aoe_macro PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/test/main.cpp
 )
-target_link_libraries(TEST_aoe_macro PRIVATE 
+target_link_libraries(TEST_aoe_macro PRIVATE
         aoe_macro Threads::Threads
 )
