@@ -20,7 +20,11 @@ inline static std::vector<int> get_interface_index_list() {
 
     // create a list of network interfaces indexes
     for (ifa = ifap; ifa; ifa = ifa->ifa_next) {
-        if (ifa->ifa_addr && ifa->ifa_addr->sa_family == AF_PACKET) {
+#if defined (__APPLE__)
+        if (ifa->ifa_addr && ifa->ifa_addr->sa_family == AF_INET) {
+#else
+    if (ifa->ifa_addr && ifa->ifa_addr->sa_family == AF_PACKET) {
+#endif
             auto index = if_nametoindex(ifa->ifa_name);
             if (index) {
                 interface_index_list.push_back(index);
