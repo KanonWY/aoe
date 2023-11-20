@@ -5,3 +5,6 @@ add_subdirectory(macro)
 add_subdirectory(base)
 add_subdirectory(binding)
 add_subdirectory(serialize)
+add_subdirectory(discover)
+
+add_subdirectory(io)
