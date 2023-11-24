@@ -59,6 +59,7 @@ std::string get_channel_type(ChannelType type) {
 }
 
 std::string ChannelInfo::info() const {
+    return {};
 }
 
 } // namespace aoe::discover
