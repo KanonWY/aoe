@@ -113,7 +113,6 @@ void CUDPSenderImpl::OnSendAsync(asio::error_code ec_, std::size_t bytes_transfe
     }
 }
 
-
 CUDPSender::CUDPSender(const SSenderAttr& attr_) {
     m_socket_impl = std::make_shared<CUDPSenderImpl>(attr_);
 }

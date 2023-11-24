@@ -4,7 +4,7 @@
 
 #include "aoe/io/net/udp_receive_base.h"
 
-#define IsUdpMulticastJoinAllIfEnabled true
+#define IsUdpMulticastJoinAllIfEnabled false
 
 namespace aoe::io::net {
 
@@ -12,7 +12,9 @@ class CUDPReceiverAsio: public CUDPReceiverBase {
 public:
     explicit CUDPReceiverAsio(const SReceiverAttr& attr_);
 
+    // 加入组播
     bool AddMultiCastGroup(const char* ipaddr_) final;
+    // 移除组播
     bool RemMultiCastGroup(const char* ipaddr_) override;
 
     size_t Receive(char* buf_, size_t len_, int timeout_, ::sockaddr_in* address_ = nullptr) override;

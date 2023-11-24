@@ -20,3 +20,9 @@ target_sources(TEST_udp_client PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/test/udp_client.cpp
 )
 target_link_libraries(TEST_udp_client PRIVATE aoe_io)
+
+add_executable(TEST_udp_server)
+target_sources(TEST_udp_server PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/test/udp_server.cpp
+)
+target_link_libraries(TEST_udp_server PRIVATE aoe_io)
