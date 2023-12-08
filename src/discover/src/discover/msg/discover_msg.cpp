@@ -26,7 +26,7 @@ message::message(const char* data) {
     }
 
     data_ = new (std::nothrow) char[data_size_ + 1];
-    if (!data_) {
+    if (data_) {
         memcpy(data_, data, data_size_);
         static_cast<char*>(data_)[data_size_] = 0;
     }

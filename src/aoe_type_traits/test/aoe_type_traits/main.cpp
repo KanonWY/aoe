@@ -1,5 +1,6 @@
 #include <iostream>
 #include <future>
+#include "aoe/vartype_dict.h"
 
 int main(int argc, char *argv[]) {
 

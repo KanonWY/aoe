@@ -1,7 +1,6 @@
 #include "aoe/base/base.h"
 #include "aoe/this_process/this_process.h"
 #include "aoe/self_start/self_start.h"
-#include "aoe/base/sys_base.h"
 
 #include <set>
 #include <csignal>
@@ -12,18 +11,30 @@
 
 namespace aoe::base {
 
+// 用户信号处理函数
 using UserSignalHandler = std::function<void(int sig, std::size_t hander_idx)>;
 
-
+// 框架基础配置
 static InitConfig                                              s_init_config_;
+
+// 整个框架是否停止
 static std::atomic_bool                                        s_is_eon_stopped{ true };
+
+// 阻塞等待程序退出的条件变量及其守护锁
 static std::condition_variable                                 s_join_cd_;
 static std::mutex                                              s_join_mutex_;
+
+// 信号锁
 static std::mutex                                              s_signal_mutex_;
+// eon 框架内部处理的信号的集合
 static std::set<int>                                           s_internal_used_siganls_;
+
 static std::map<int, std::map<std::size_t, UserSignalHandler>> s_user_signal_handlers_;
 
-
+/**
+ * @brief 信号处理函数
+ * @param signal
+ */
 static void signalHandler(int signal) {
     std::map<std::size_t, UserSignalHandler> signal_handlers;
     {
@@ -87,13 +98,13 @@ std::filesystem::path getDataRoot(const std::string& name) {
 
 namespace aoe {
 void initialize() {
-    // register some signal
+    // 内部注册的信号
     base::s_internal_used_siganls_ = { SIGTERM, SIGINT };
     for (auto signal: base::s_internal_used_siganls_) {
         std::signal(signal, base::signalHandler);
     }
 
-    // read start param
+    // 环境变量处理函数
     static auto env = [](const char* key) -> std::string {
         if (auto* str = std::getenv(key); str == nullptr) {
             return "";
@@ -123,6 +134,7 @@ void initialize() {
         finalize();
         std::exit(0);
     }
+    std::cout << "aoe start" << std::endl;
 }
 
 void finalize() {
