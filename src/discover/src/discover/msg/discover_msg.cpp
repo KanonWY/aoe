@@ -7,7 +7,7 @@ message::message(const void* data, const size_t size) {
         return;
     }
     data_ = new (std::nothrow) char[size + 1];
-    if (nullptr != data_) {
+    if (data_) {
         memcpy(data_, data, size);
         static_cast<char*>(data_)[size] = 0;
         data_size_                      = size;
@@ -26,7 +26,7 @@ message::message(const char* data) {
     }
 
     data_ = new (std::nothrow) char[data_size_ + 1];
-    if (!data_) {
+    if (data_) {
         memcpy(data_, data, data_size_);
         static_cast<char*>(data_)[data_size_] = 0;
     }
@@ -36,7 +36,7 @@ message::message(const char* data) {
 }
 
 message::~message() {
-    if (!data_) {
+    if (data_) {
         delete[] static_cast<char*>(data_);
         data_      = nullptr;
         data_size_ = 0;
