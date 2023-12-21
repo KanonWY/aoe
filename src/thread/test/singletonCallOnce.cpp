@@ -1,5 +1,6 @@
 #include <atomic>
 #include <mutex>
+#include <iostream>
 
 namespace aoe::test {
 class Static_Singleton {
@@ -17,3 +18,10 @@ private:
     Static_Singleton() = default;
 };
 } // namespace aoe::test
+
+
+int main()
+{
+    std::cout << "hello world" << std::endl;
+    return 0;
+}
