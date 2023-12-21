@@ -1,11 +1,10 @@
-# 简答的宏库封装
-add_library(aoe_macro INTERFACE)
-target_include_directories(aoe_macro INTERFACE
+# 编译期 hash_string 库
+add_library(aoe_hash_string INTERFACE)
+target_include_directories(aoe_hash_string INTERFACE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 
-################################ TEST
 file(GLOB MY_FILES "${CMAKE_CURRENT_SOURCE_DIR}/test/*")
 
 set(EXEC_NAME_LIST "")
@@ -21,9 +20,10 @@ foreach(demo_name ${EXEC_NAME_LIST})
     # 链接 gtest, 支持单元测试
     target_link_libraries(${demo_name} PRIVATE
             GTest::gtest_main
-            aoe_macro
+            aoe_hash_string
     )
     gtest_discover_tests(${demo_name}
             EXTRA_ARGS --gtest_color=yes
     )
 endforeach()
+

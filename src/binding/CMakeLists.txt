@@ -4,6 +4,7 @@ target_sources(aoe_binding PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/binding/object
 target_include_directories(aoe_binding PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(aoe_binding PUBLIC
         aoe_macro
+        aoe_hash_string
 )
 
 
